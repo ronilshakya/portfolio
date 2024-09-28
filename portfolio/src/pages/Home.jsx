@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Home = () => {
+const Home = ({darkmode}) => {
   return (
-    <div>
+    <div className={`${darkmode ? 'dark' : 'light'}`}>
         <p>Hello world</p>
     </div>
   )
