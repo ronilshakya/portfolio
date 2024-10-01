@@ -2,16 +2,19 @@ import React,{useEffect, useState} from 'react'
 import Button from '../common/Button'
 import NavMenu from '../specific/NavMenu';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { Link } from 'react-router-dom';
 
 const Header = ({darkmode,toggleDarkmode}) => {
   const [openedSidebar, setOpenedSidebar] = useState(false);
  
   return (
     <>
-      <div className={`relative z-40 flex justify-between items-center px-10 py-8 md:px-20 md:py-8 border-b ${darkmode ? 'bg-black border-custom-dark-border' : 'bg-white border-custom-light-border'} transition-colors duration-500 ease-in-out`}>
+      <div className={`relative z-40 flex justify-between items-center px-8 py-8 md:px-20 md:py-8 border-b ${darkmode ? 'bg-black border-custom-dark-border' : 'bg-white border-custom-light-border'} transition-colors duration-500 ease-in-out`}>
       {/* site branding */}
       <div>
-        <h1 className={`${darkmode ? 'text-white' : 'text-black'}`}>LOGO</h1>
+        <Link to='/'>
+          <h1 className={`${darkmode ? 'text-white' : 'text-black'}`}>LOGO</h1>
+        </Link>
       </div>
 
       {/* dark button */}

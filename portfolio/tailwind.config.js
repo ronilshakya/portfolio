@@ -13,6 +13,7 @@ export default {
       colors:{
         "custom-light-border": 'rgba(0, 0, 0, 0.16)',
         "custom-dark-border": '#161616',
+        "customDark": 'rgb(15, 15, 15)',
       }
     },
   },

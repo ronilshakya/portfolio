@@ -5,7 +5,7 @@ const Footer = ({darkmode}) => {
     <div className={`${darkmode ? 'dark':'light'} grid sm:grid-cols-1 md:grid-cols-2 px-10 md:px-20 bg-white`}>
 
       <div className='md:col-span-2'>
-        <h1 className='text-center text-5xl md:text-9xl font-bold'>SHAKYA</h1>
+        <h1 className='text-center text-5xl md:text-[200px] font-bold'>SHAKYA</h1>
       </div>
 
       <div className='justify-self-center md:justify-self-start'>

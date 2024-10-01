@@ -3,18 +3,10 @@ import { IoClose } from "react-icons/io5";
 import Button from '../common/Button';
 import {Link} from 'react-router-dom';
 import { MdArrowOutward } from "react-icons/md";
+import { navItems,linkItems } from '../../Data';
 
 const NavMenu = ({ openedSidebar, setOpenedSidebar, darkmode }) => {
-  const navItems = [
-    {id:1, name:"Home", link:"/"},
-    {id:2, name:"Work", link:"/work"},
-    {id:3, name:"Contact", link:"/contact"},
-  ]
-  const linkItems = [
-    {id:1, site:"LinkedIn", href:"https://www.linkedin.com/in/ronilshakya/"},
-    {id:2, site:"Github", href:"https://github.com/ronilshakya"},
-    {id:3, site:"Instagram", href:"https://www.instagram.com/ronilshakya/"},
-  ]
+ 
   return (
     <>
       {/* Sidebar */}
