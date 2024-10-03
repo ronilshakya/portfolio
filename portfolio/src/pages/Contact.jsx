@@ -11,7 +11,7 @@ const Contact = ({darkmode}) => {
       <div className={`grid grid-cols-1 xl:grid-cols-2 px-8 md:px-20 py-10 justify-items-center items-center ${darkmode?'dark':'light'}`}>
         <div className='flex flex-col gap-8'>
           <h1 className='text-5xl font-bold'>SAY HELLO!</h1>
-          <p className='text-2xl font-medium'>My creative spirit comes alive in the digital realm. With nimble fingers flying across the keyboard.</p>
+          <p className={`text-2xl font-medium ${darkmode?'text-gray-400':'text-gray-600'}`}>My creative spirit comes alive in the digital realm. With nimble fingers flying across the keyboard.</p>
           <form action="" className='flex flex-col gap-4'>
             <h1 className='text-xl'>FILL THIS FORM OUT</h1>
             <Input placeholder={"Name"} darkmode={darkmode}/>
@@ -29,21 +29,23 @@ const Contact = ({darkmode}) => {
         </div>
       </div>
       {/* contact info */}
-      <div className='mx-20 border-t border-b border-custom-light-border'>
-        <div className='grid grid-cols-1 lg:grid-cols-4 lg:justify-items-center py-24'>
+      <div className={`px-8 lg:px-20 border-t border-b border-custom-light-border ${darkmode? 'dark':'light'}`}>
+        <div className='grid grid-cols-1 gap-12 lg:gap-0 lg:grid-cols-4 py-10 lg:py-24'>
           {/* social */}
           <div>
-            <p>SOCIAL</p>
-            {linkItems.map((item)=>(
-              <a href={item.href} key={item.id}>
-                {item.site.toUpperCase()}
-              </a>
-            ))}
+            <p className={`text-base ${darkmode?'text-gray-400':'text-gray-600'} mb-6 `}>SOCIAL</p>
+            <div className='flex flex-col gap-4 text-xl'>
+              {linkItems.map((item)=>(
+                <a href={item.href} key={item.id}>
+                  {item.site.toUpperCase()}
+                </a>
+              ))}
+            </div>
           </div>
           {/* current location */}
           <div>
-            <p>CURRENT LOCATION</p>
-            <ul>
+            <p className={`text-base ${darkmode?'text-gray-400':'text-gray-600'} mb-6`}>CURRENT LOCATION</p>
+            <ul className='flex flex-col gap-4 text-xl'>
               <li>LUNKHUSI,</li>
               <li>LALITPUR,</li>
               <li>NEPAL</li>
@@ -51,16 +53,16 @@ const Contact = ({darkmode}) => {
           </div>
           {/* PHONE */}
           <div>
-            <p>PHONE</p>
-            <ul>
+            <p className={`text-base ${darkmode?'text-gray-400':'text-gray-600'} mb-6`}>PHONE</p>
+            <ul className='flex flex-col gap-4 text-xl'>
               <li>+977-9818974948</li>
               <li>+977-9748277365</li>
             </ul>
           </div>
           {/* EMAIl */}
           <div>
-            <p>EMAIL</p>
-            <ul>
+            <p className={`text-base ${darkmode?'text-gray-400':'text-gray-600'} mb-6`}>EMAIL</p>
+            <ul className='flex flex-col gap-4 text-xl'>
               <li>shakyaronil8@gmail.com</li>
             </ul>
           </div>
