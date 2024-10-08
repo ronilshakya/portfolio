@@ -18,12 +18,13 @@ const Contact = ({darkmode}) => {
             <Input placeholder={"Email"} darkmode={darkmode}/>
             <textarea name="Message" placeholder='Message' rows="4" className={`rounded-xl w-full px-4 py-5 focus:outline-none ${darkmode ? 'bg-customDark':'bg-gray-100'}`} id=""></textarea>
             <button
-              className={`w-full ${darkmode ? 'bg-white text-black':'bg-black text-white'} text-base py-5 rounded-xl`}
+              className={`w-full ${darkmode ? 'bg-white text-black':'bg-black text-white'} hover:opacity-75 transition-all duration-300 text-base py-5 rounded-xl`}
             >
               SEND EMAIL
             </button>
           </form>
         </div>
+        {/* contact image */}
         <div className='rounded-xl overflow-hidden max-xl:mt-12'>
           <img src={ProfilePic} className='w-[500px]' alt="" />
         </div>

@@ -1,6 +1,12 @@
 import React from 'react'
 
 const Footer = ({darkmode}) => {
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top:0,
+      behavior: 'smooth'
+    })
+  }
   return (
     <div className={`${darkmode ? 'dark':'light'} grid grid-cols-1 lg:grid-cols-2 px-10 md:px-20 pt-16 bg-white`}>
 
@@ -13,7 +19,7 @@ const Footer = ({darkmode}) => {
       </div>
 
       <div className='justify-self-center lg:justify-self-end'>
-        <button>GO BACK TO TOP</button>
+        <button onClick={()=>scrollToTop()}>GO BACK TO TOP</button>
       </div>
 
     </div>

@@ -3,9 +3,22 @@ import Button from '../common/Button'
 import NavMenu from '../specific/NavMenu';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { Link } from 'react-router-dom';
+import { IoMenu } from "react-icons/io5";
 
 const Header = ({darkmode,toggleDarkmode}) => {
   const [openedSidebar, setOpenedSidebar] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(()=>{
+    const handleResize = () =>{
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener("resize",handleResize);
+    return ()=>{
+      window.removeEventListener("resize",handleResize);
+    }
+  })
+
  
   return (
     <>
@@ -30,7 +43,15 @@ const Header = ({darkmode,toggleDarkmode}) => {
 
       {/* Menu */}
       <div>
-        <Button darkmode={darkmode} onClick={()=> setOpenedSidebar(!openedSidebar)}>NAVIGATE HERE</Button>
+        <Button darkmode={darkmode} onClick={()=> setOpenedSidebar(!openedSidebar)}>
+          {
+            windowWidth <= 768 ?(
+              <IoMenu size={25} />
+            ):(
+              <span>NAVIGATE HERE</span>
+            )
+          }
+        </Button>
       </div>
     </div>
     

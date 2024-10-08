@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaPlus } from "react-icons/fa";
 import Button from '../common/Button';
+import {Link} from "react-router-dom"
 
 const ExpertiseModal = ({closeModal,modalTitle,modalDesc,modalKeyFeatures,modalPhoto,darkmode}) => {
   return (
@@ -23,10 +24,12 @@ const ExpertiseModal = ({closeModal,modalTitle,modalDesc,modalKeyFeatures,modalP
                 ))}
               </ul>
             </div>
-            <Button darkmode= {darkmode}>GET STARTED</Button>
+            <Link to='/contact'>
+              <Button darkmode= {darkmode}>GET STARTED</Button>
+            </Link>
           </div>
           <div className='flex justify-center items-center max-lg:hidden'>
-            <img src={modalPhoto} className='rounded-xl' alt="" onLoad={()=>setLoading(false)}/>
+            <img src={modalPhoto} className='rounded-xl' alt=""/>
           </div>
         </div>
       </div>
