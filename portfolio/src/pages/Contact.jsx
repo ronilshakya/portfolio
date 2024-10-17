@@ -1,9 +1,86 @@
-import React from 'react'
+import React, {useState, useRef} from 'react'
 import ProfilePic from '../assets/images/1.jpg' 
 import Input from '../components/common/Input'
 import { linkItems } from '../Data'
+import axios from 'axios'
+import ReCAPTCHA from "react-google-recaptcha"
 
 const Contact = ({darkmode}) => {
+  const [name, setName] = useState("");
+  const [nameErr, setNameErr] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageErr, setMessageErr] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState("")
+  const [recaptchaTokenErr, setRecaptchaTokenErr] = useState("")
+
+  const recaptchaRef = useRef(null)
+  
+  const handleFormSubmit = (e) =>{
+    e.preventDefault();
+
+
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let valid = true;
+
+    if(name == ""){
+      setNameErr("Please fill out this field");
+      valid = false;
+    }else{
+      setNameErr("")
+    }
+    if(email == ""){
+      setEmailErr("Please fill out this field");
+      valid = false;
+    }else if(!regex.test(email)){
+      setEmailErr("Invalid email address");
+      valid = false;
+    }else{
+      setEmailErr("")
+    }
+    if(message == ""){
+      setMessageErr("Please fill out this field");
+      valid = false;
+    }else{
+      setMessageErr("");
+    }
+    if(!recaptchaToken){
+      setRecaptchaTokenErr("Please complete recaptcha");
+      valid= false
+    }else{
+      setRecaptchaTokenErr("");
+    }
+
+    if(valid){
+      try {
+        const response = axios.post('http://localhost:3000/send',{
+          name,
+          email,
+          message,
+          recaptchaToken
+        })
+        if (response.status === 400 || response.status === 500) {
+          console.error("Failed with status:", response.status); // Log error
+          alert("Failed to send message. Please try again.");
+        } else {
+          alert("Message sent successfully!");
+          // Reset the form fields
+          setName("");
+          setEmail("");
+          setMessage("");
+          setRecaptchaToken("");
+          if (recaptchaRef.current) {
+            recaptchaRef.current.reset();
+          }
+        }
+      } catch (error) {
+        console.error("Error sending message:", error); // Log error
+        alert("Failed to send message. Please try again.");
+      }
+    }
+  }
+
   return (
     // wrapper
     <div> 
@@ -12,11 +89,20 @@ const Contact = ({darkmode}) => {
         <div className='flex flex-col gap-8'>
           <h1 className='text-5xl font-bold'>SAY HELLO!</h1>
           <p className={`text-2xl font-medium ${darkmode?'text-gray-400':'text-gray-600'}`}>My creative spirit comes alive in the digital realm. With nimble fingers flying across the keyboard.</p>
-          <form action="" className='flex flex-col gap-4'>
+          <form onSubmit={handleFormSubmit} className='flex flex-col gap-4'>
             <h1 className='text-xl'>FILL THIS FORM OUT</h1>
-            <Input placeholder={"Name"} darkmode={darkmode}/>
-            <Input placeholder={"Email"} darkmode={darkmode}/>
-            <textarea name="Message" placeholder='Message' rows="4" className={`rounded-xl w-full px-4 py-5 focus:outline-none ${darkmode ? 'bg-customDark':'bg-gray-100'}`} id=""></textarea>
+            <Input placeholder={"Name"} darkmode={darkmode} value={name} onChange={(e)=>setName(e.target.value)}/>
+            <span className="text-red-600">{nameErr}</span>
+            <Input placeholder={"Email"} darkmode={darkmode} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <span className="text-red-600">{emailErr}</span>
+            <textarea name="message" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder='Message' rows="4" className={`rounded-xl w-full px-4 py-5 focus:outline-none ${darkmode ? 'bg-customDark':'bg-gray-100'}`} id=""></textarea>
+            <span className="text-red-600">{messageErr}</span>
+            <ReCAPTCHA 
+              sitekey="6LfRv2MqAAAAAOpoEIE1z-upEVN7c56rksKKOG-q"
+              onChange={(token)=>setRecaptchaToken(token)}
+              ref={recaptchaRef}
+            />
+            <span className="text-red-600">{recaptchaTokenErr}</span>
             <button
               className={`w-full ${darkmode ? 'bg-white text-black':'bg-black text-white'} hover:opacity-75 transition-all duration-300 text-base py-5 rounded-xl`}
             >
