@@ -4,6 +4,7 @@ import ReactImg from './assets/images/react.png'
 import IllustratorImg from './assets/images/illustrator.png'
 import PhotoshopImg from './assets/images/photoshop.png'
 import PremiereImg from './assets/images/premier.png'
+import Pinterest from './assets/images/Pinterest Thumbnail.jpg'
 
 export const navItems = [
   {id:1, name:"Home", link:"/"},
@@ -106,5 +107,21 @@ export const FaqItems = [
     id:3,
     question:"Can you walk me through your design process?",
     answer: "Certainly! My design process typically involves understanding the client's needs and objectives, conducting research, brainstorming ideas, sketching concepts, refining designs, and delivering high-quality final products."
+  },
+]
+export const workItems = [
+  {
+    id:1,
+    img: Pinterest,
+    title: 'Pinterest Uploads',
+    subtitle: 'Vector Arts',
+    url: 'https://www.pinterest.com/ronilshakyaa/'
+  },
+  {
+    id:2,
+    img: Pinterest,
+    title: 'RS Store',
+    subtitle: 'Business Website',
+    url: 'https://www.pinterest.com/ronilshakyaa/'
   },
 ]

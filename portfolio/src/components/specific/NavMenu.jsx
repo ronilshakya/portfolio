@@ -4,6 +4,8 @@ import Button from '../common/Button';
 import {Link} from 'react-router-dom';
 import { MdArrowOutward } from "react-icons/md";
 import { navItems,linkItems } from '../../Data';
+import LogoLight from '../../assets/images/vertical logo (light).png';
+import LogoDark from '../../assets/images/vertical logo (dark).png';
 
 const NavMenu = ({ openedSidebar, setOpenedSidebar, darkmode }) => {
  
@@ -16,7 +18,7 @@ const NavMenu = ({ openedSidebar, setOpenedSidebar, darkmode }) => {
         {/* navigation header */}
         <div className='flex justify-between items-center px-20 py-14'>
           <div className='max-sm:hidden'>
-            <h1>LOGO</h1>
+            <img src={darkmode ? LogoLight : LogoDark} className='w-9 md:w-11' alt="" />
           </div>
           <div className={`bg-black inline-block rounded-full absolute max-sm:top-16 left-1/2 transform -translate-x-1/2 `}>
             <button 

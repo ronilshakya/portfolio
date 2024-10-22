@@ -4,6 +4,8 @@ import NavMenu from '../specific/NavMenu';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { Link } from 'react-router-dom';
 import { IoMenu } from "react-icons/io5";
+import LogoDark from '../../assets/images/vertical logo (dark).png'
+import LogoLight from '../../assets/images/vertical logo (light).png'
 
 const Header = ({darkmode,toggleDarkmode}) => {
   const [openedSidebar, setOpenedSidebar] = useState(false);
@@ -26,7 +28,7 @@ const Header = ({darkmode,toggleDarkmode}) => {
       {/* site branding */}
       <div>
         <Link to='/'>
-          <h1 className={`${darkmode ? 'text-white' : 'text-black'}`}>LOGO</h1>
+        <img src={darkmode ? LogoLight : LogoDark} className='w-9 md:w-11' alt="" />
         </Link>
       </div>
 
@@ -36,7 +38,7 @@ const Header = ({darkmode,toggleDarkmode}) => {
           <DarkModeSwitch
             checked={darkmode}
             onChange={toggleDarkmode}
-            size={40}
+            size={30}
           />
         </button>
       </div>
