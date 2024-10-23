@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { FaCircle } from "react-icons/fa";
 import ProfilePic from '../assets/images/1.jpg'
 import Button from '../components/common/Button'
@@ -12,16 +12,46 @@ const Home = ({darkmode}) => {
   const [openFaqId, setOpenFaqId] = useState(null);
   const openModal = (id) => setOpenModalId(id)
   const closeModal = () => setOpenModalId(null)
+  const imgRef = useRef(null);
+  const [scale, setScale] = useState(1)
+  const [isVisible, setIsVisible] = useState(false)
 
-  const downloadUrl = "../../public/cv v-1.pdf";  
-  const handleScroll = () =>{
-    setOffsetY(window.scrollY);
-  }
-  
+  const downloadUrl = "/cv v-1.pdf";  
+
   useEffect(()=>{
-    window.addEventListener('scroll',handleScroll);
-    return () => window.removeEventListener('scroll',handleScroll)
+    const observer = new IntersectionObserver(
+      (entries) =>{
+        entries.forEach((entry)=>{
+          setIsVisible(entry.isIntersecting)
+        })
+      },
+      {threshold: 0.3}
+    )
+    if(imgRef.current){
+      observer.observe(imgRef.current)
+    }
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current);
+      }
+    };
   },[])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isVisible) {
+        const scrollY = window.scrollY;
+        const newScale = 1 + scrollY / 6000;
+        setScale(newScale);
+      } else {
+        setScale(1); 
+      }
+    };window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isVisible]);
 
   return (
     <div className={`${darkmode ? 'dark' : 'light'}`}> 
@@ -42,7 +72,13 @@ const Home = ({darkmode}) => {
         <div className='flex flex-col items-center justify-center pb-20 gap-20'>
           <h1 className='max-md:hidden md:text-8xl font-bold text-center'>ABOUT ME</h1>
           <div className='rounded-3xl md:rounded-full overflow-hidden'>
-            <img src={ProfilePic} className='w-72 md:w-96' alt=""/>
+            <img 
+              ref={imgRef} 
+              src={ProfilePic} 
+              className='w-72 md:w-96 transition-transform duration-500 ease-in-out' 
+              style={{ transform: `scale(${scale})` }}
+              alt=""
+            />
           </div>
         </div>
 

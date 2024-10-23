@@ -8,9 +8,11 @@ const Work = ({darkmode}) => {
       <div className='grid grid-cols-1 md:grid-cols-2 mt-16 gap-8 mx-8 md:mx-20'>
         {
           workItems.map((item)=>(
-            <div key={item.id} className={`sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-4xl justify-self-center rounded-xl overflow-hidden shadow-md ${darkmode ? 'bg-customDark':'bg-gray-100'}`}>
+            <div key={item.id} className={`group sm:max-w-md lg:max-w-2xl xl:max-w-4xl justify-self-center rounded-xl overflow-hidden shadow-md ${darkmode ? 'bg-customDark':'bg-gray-100'}`}>
               <a href={item.url} target='_blank'>
-                <img src={item.img} alt="" />
+                <div className='overflow-hidden'>
+                  <img src={item.img} className='group-hover:scale-110 transition duration-500' alt="" />
+                </div>
                 <div className='p-5'>
                   <h1 className='text-xl'>{item.title}</h1>
                   <p className='text-lg text-gray-600'>{item.subtitle}</p>

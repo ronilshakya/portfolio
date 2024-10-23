@@ -4,6 +4,7 @@ import Input from '../components/common/Input'
 import { linkItems } from '../Data'
 import axios from 'axios'
 import ReCAPTCHA from "react-google-recaptcha"
+import Swal from 'sweetalert2'
 
 const Contact = ({darkmode}) => {
   const [name, setName] = useState("");
@@ -64,7 +65,13 @@ const Contact = ({darkmode}) => {
           console.error("Failed with status:", response.status); // Log error
           alert("Failed to send message. Please try again.");
         } else {
-          alert("Message sent successfully!");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Message sent successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
           // Reset the form fields
           setName("");
           setEmail("");
@@ -75,8 +82,14 @@ const Contact = ({darkmode}) => {
           }
         }
       } catch (error) {
-        console.error("Error sending message:", error); // Log error
-        alert("Failed to send message. Please try again.");
+        console.error("Error sending message:", error);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Failed to send message. Please try again.",
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     }
   }
