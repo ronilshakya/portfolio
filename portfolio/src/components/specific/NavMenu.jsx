@@ -52,7 +52,7 @@ const NavMenu = ({ openedSidebar, setOpenedSidebar, darkmode }) => {
         {/* footer */}
         <div className='flex flex-col max-sm:items-center md:flex-row justify-between px-20 py-14 max-sm:gap-3'>
           <div>
-            <p className='text-sm md:text-lg'>@2024 ALL RIGHTS RESERVED</p>
+            <p className='text-sm md:text-lg text-center'>@2024 ALL RIGHTS RESERVED</p>
           </div>
           <div className='flex max-sm:flex-col gap-6 max-sm:gap-3'>
             {
