@@ -54,7 +54,7 @@ const Contact = ({darkmode}) => {
 
     if(valid){
       try {
-        const response = axios.post('http://localhost:3000/send',{
+        const response = axios.post('https://portfolio-o4jz.onrender.com/send',{
           name,
           email,
           message,
