@@ -98,7 +98,7 @@ const Contact = ({darkmode}) => {
     // wrapper
     <div> 
       {/* contact form */}
-      <div className={`grid grid-cols-1 xl:grid-cols-2 px-8 md:px-20 py-10 justify-items-center items-center ${darkmode?'dark':'light'}`}>
+      <div className={`grid grid-cols-1 xl:grid-cols-2 gap-8 px-8 md:px-20 py-10 justify-items-center items-center ${darkmode?'dark':'light'}`}>
         <div className='flex flex-col gap-8'>
           <h1 className='text-5xl font-bold'>SAY HELLO!</h1>
           <p className={`text-2xl font-medium ${darkmode?'text-gray-400':'text-gray-600'}`}>My creative spirit comes alive in the digital realm. With nimble fingers flying across the keyboard.</p>
@@ -124,9 +124,7 @@ const Contact = ({darkmode}) => {
           </form>
         </div>
         {/* contact image */}
-        <div className='rounded-xl overflow-hidden max-xl:mt-12'>
-          <img src={ProfilePic} className='w-[500px]' alt="" />
-        </div>
+          <img src={ProfilePic} className='rounded-xl w-full max-xl:mt-12' alt="" />
       </div>
       {/* contact info */}
       <div className={`px-8 lg:px-20 border-t border-b border-custom-light-border ${darkmode? 'dark':'light'}`}>
