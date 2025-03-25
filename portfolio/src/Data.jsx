@@ -5,6 +5,7 @@ import IllustratorImg from './assets/images/illustrator.png'
 import PhotoshopImg from './assets/images/photoshop.png'
 import PremiereImg from './assets/images/premier.png'
 import Pinterest from './assets/images/Pinterest Thumbnail.jpg'
+import Fooddesk from './assets/images/fooddesk.png'
 
 export const navItems = [
   {id:1, name:"Home", link:"/"},
@@ -119,9 +120,9 @@ export const workItems = [
   },
   {
     id:2,
-    img: Pinterest,
-    title: 'RS Store',
+    img: Fooddesk,
+    title: 'Fooddesk',
     subtitle: 'Business Website',
-    url: 'https://www.pinterest.com/ronilshakyaa/'
+    url: 'https://fooddeskfoodordering.netlify.app/'
   },
 ]
